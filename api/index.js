@@ -1,9 +1,8 @@
-// app/actions.ts
-"use server";
-import { neon } from "@neondatabase/serverless";
+import sql from './db.js';
 
-export async function getData() {
-    const sql = neon(process.env.DATABASE_URL);
-    const data = await sql`...`;
-    return data;
+export default async function handler(req, res) {
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
 }
