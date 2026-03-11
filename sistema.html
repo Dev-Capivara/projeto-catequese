@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SCJ Pro - Painel Administrativo</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  
+  <style>
+    :root { --primary: #b71c1c; --bg: #f4f7f6; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); }
+    
+    /* Navbar e UI */
+    .navbar { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .glass-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid rgba(0,0,0,0.05); }
+    
+    /* Controle de Seções */
+    section { display: none; }
+    section.active { display: block; animation: fadeIn 0.3s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+<script>
+  if (!sessionStorage.getItem('scj_auth')) {
+    window.location.href = 'index.html';
+  }
+</script>
+
+<nav class="navbar navbar-dark mb-4">
+  <div class="container">
+    <span class="navbar-brand fw-800">SCJ <small class="fw-400">| Gestão</small></span>
+    <div class="d-flex gap-3">
+      <button class="btn btn-sm btn-outline-light border-0" onclick="App.navigate('dash')">Dashboard</button>
+      <button class="btn btn-sm btn-outline-light border-0" onclick="App.navigate('alunos')">Alunos</button>
+      <button class="btn btn-light btn-sm fw-bold text-danger" onclick="App.logout()">Sair</button>
+    </div>
+  </div>
+</nav>
+
+<main class="container">
+  
+  <section id="sec-dash" class="active">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass-card text-center">
+          <h6 class="text-muted small fw-bold">TOTAL DE ALUNOS</h6>
+          <h2 id="count-alunos" class="fw-800">0</h2>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="glass-card">
+          <h5 class="fw-800">Olá, <span id="user-name">...</span>!</h5>
+          <p class="text-muted mb-0">O sistema está conectado ao Neon Database via Vercel Edge.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="sec-alunos">
+    <div class="glass-card">
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="fw-800 mb-0">Lista de Catequizandos</h5>
+        <button class="btn btn-danger btn-sm" onclick="App.loadAlunos()">Atualizar</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead><tr><th>Nome</th><th>Responsável</th><th>Status</th></tr></thead>
+          <tbody id="table-alunos-body">
+            <tr><td colspan="3" class="text-center py-4">Carregando dados...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+  // Central de Configuração (Poderia ser um arquivo separado config.js)
+  const CONFIG = {
+    API_BASE: 'https://seu-projeto.vercel.app/api',
+    ENDPOINTS: {
+      ALUNOS: '/alunos', // Módulo api/alunos.js
+      AUTH: '/auth'      // Módulo api/auth.js
+    }
+  };
+
+  const App = {
+    user: JSON.parse(sessionStorage.getItem('scj_auth')),
+
+    init() {
+      document.getElementById('user-name').innerText = this.user.nome;
+      this.loadAlunos();
+    },
+
+    navigate(page) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(`sec-${page}`).classList.add('active');
+    },
+
+    async loadAlunos() {
+      try {
+        const res = await fetch(`${CONFIG.API_BASE}${CONFIG.ENDPOINTS.ALUNOS}`);
+        const dados = await res.json();
+        this.renderAlunos(dados);
+        document.getElementById('count-alunos').innerText = dados.length;
+      } catch (e) {
+        this.notify("Erro ao carregar alunos", "error");
+      }
+    },
+
+    renderAlunos(lista) {
+      const body = document.getElementById('table-alunos-body');
+      body.innerHTML = lista.map(aluno => `
+        <tr>
+          <td class="fw-bold">${aluno.nome}</td>
+          <td class="text-muted">${aluno.resp1_nome || '--'}</td>
+          <td><span class="badge bg-success">Ativo</span></td>
+        </tr>
+      `).join('');
+    },
+
+    logout() {
+      sessionStorage.removeItem('scj_auth');
+      window.location.href = 'index.html';
+    },
+
+    notify(msg, type = "success") {
+      Toastify({
+        text: msg,
+        style: { background: type === "success" ? "#059669" : "#dc2626", borderRadius: "8px" }
+      }).showToast();
+    }
+  };
+
+  App.init();
+</script>
+</body>
+</html>
