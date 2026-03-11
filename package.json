@@ -1,1 +1,10 @@
+{
 
+  "name": "projeto-catequese",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.5"
+  }
+
+}
