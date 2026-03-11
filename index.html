@@ -1,146 +1,85 @@
 <!doctype html>
+
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SCJ Pro - Login</title>
-  
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  
-  <style>
-    :root {
-      --primary: #b71c1c;
-      --bg: #f4f7f6;
-      --surface: #ffffff;
-    }
-
-    body { 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
-      background: var(--bg); 
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .login-container {
-      width: 100%;
-      max-width: 400px;
-      padding: 20px;
-    }
-
-    .login-box {
-      background: var(--surface);
-      padding: 40px;
-      border-radius: 20px;
-      border-top: 6px solid var(--primary);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-      animation: fadeIn 0.5s ease-out;
-    }
-
-    .form-control {
-      border-radius: 10px;
-      padding: 12px;
-      border: 1.5px solid #e2e8f0;
-    }
-
-    .btn-red {
-      background: var(--primary);
-      color: white;
-      border: none;
-      font-weight: 700;
-      padding: 14px;
-      border-radius: 10px;
-      transition: 0.3s;
-    }
-
-    .btn-red:hover {
-      background: #7f0f0f;
-      transform: translateY(-2px);
-    }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SCJ Pro - Login</title>
+<link href="" rel="stylesheet">
+<link href="" rel="stylesheet">
+<link href="[link suspeito removido]" rel="stylesheet">
+<link rel="stylesheet" href="">
+<script src=""></script>
+<style>
+:root { --primary: #b71c1c; --bg: #f4f7f6; --surface: #ffffff; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0; }
+.login-container { width: 100%; max-width: 400px; padding: 20px; }
+.login-box { background: var(--surface); padding: 40px; border-radius: 20px; border-top: 6px solid var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.form-control { border-radius: 10px; padding: 12px; border: 1.5px solid #e2e8f0; }
+.btn-red { background: var(--primary); color: white; border: none; font-weight: 700; padding: 14px; border-radius: 10px; transition: 0.3s; width: 100%; }
+.btn-red:hover { background: #7f0f0f; transform: translateY(-2px); }
+</style>
 </head>
 <body>
-
 <div class="login-container">
-  <div class="login-box">
-    <div class="text-center mb-4">
-      <div class="mx-auto mb-3" style="background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 15px; display: grid; place-items: center; font-weight: 900; font-size: 1.8rem;">SCJ</div>
-      <h4 class="fw-800">Bem-vindo</h4>
-      <p class="text-muted small">Sistema de Gestão de Catequese</p>
-    </div>
-
-    <form id="formLogin">
-      <div class="mb-3">
-        <label class="form-label small fw-bold text-muted">E-MAIL</label>
-        <div class="input-group">
-          <span class="input-group-text bg-white"><i class="fas fa-envelope text-muted"></i></span>
-          <input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
-        </div>
-      </div>
-      <div class="mb-4">
-        <label class="form-label small fw-bold text-muted">SENHA</label>
-        <div class="input-group">
-          <span class="input-group-text bg-white"><i class="fas fa-lock text-muted"></i></span>
-          <input type="password" id="pass" class="form-control" placeholder="••••••••" required>
-        </div>
-      </div>
-      <button type="submit" id="btn-entrar" class="btn btn-red w-100 shadow">ENTRAR NO SISTEMA</button>
-    </form>
-  </div>
+<div class="login-box">
+<div class="text-center mb-4">
+<div class="mx-auto mb-3" style="background: var(--primary); color: white; width: 60px; height: 60px; border-radius: 15px; display: grid; place-items: center; font-weight: 900; font-size: 1.8rem;">SCJ</div>
+<h4 style="font-weight: 800; text-align: center;">Bem-vindo</h4>
+<p style="color: gray; font-size: 0.8rem; text-align: center;">Sistema de Gestão de Catequese</p>
 </div>
-
-<script src="https://projeto-catequese-rho.vercel.app/"></script>
+<form id="formLogin">
+<div class="mb-3">
+<label style="font-size: 0.7rem; font-weight: bold; color: gray;">E-MAIL</label>
+<input type="email" id="email" class="form-control" placeholder="seu@email.com" required>
+</div>
+<div class="mb-4">
+<label style="font-size: 0.7rem; font-weight: bold; color: gray;">SENHA</label>
+<input type="password" id="pass" class="form-control" placeholder="••••••••" required>
+</div>
+<button type="submit" id="btn-entrar" class="btn-red">ENTRAR NO SISTEMA</button>
+</form>
+</div>
+</div>
 <script>
-  const API_URL = "https://projeto-catequese-rho.vercel.app/api"; // Coloque sua URL aqui
-
- document.getElementById('formLogin').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const pass = document.getElementById('pass').value;
-    const btn = document.getElementById('btn-entrar');
-
-    btn.disabled = true;
-    btn.innerText = "AUTENTICANDO...";
-
-    try {
-        const response = await fetch(`${API_URL}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, senha: pass })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // Salva a sessão com os dados que o servidor retornou
-            sessionStorage.setItem('scj_auth', JSON.stringify(data.user));
-            window.location.href = 'sistema.html'; 
-        } else {
-            showError(data.error || "Erro ao fazer login");
-            btn.disabled = false;
-            btn.innerText = "ENTRAR NO SISTEMA";
-        }
-    } catch (err) {
-        showError("Erro de conexão com o servidor.");
-        btn.disabled = false;
-        btn.innerText = "ENTRAR NO SISTEMA";
-    }
+const API_URL = "";
+document.getElementById('formLogin').addEventListener('submit', async (e) => {
+e.preventDefault();
+const email = document.getElementById('email').value;
+const pass = document.getElementById('pass').value;
+const btn = document.getElementById('btn-entrar');
+btn.disabled = true;
+btn.innerText = "AUTENTICANDO...";
+try {
+const response = await fetch(API_URL, {
+method: 'POST',
+headers: { 'Content-Type': 'application/json' },
+body: JSON.stringify({ email: email, senha: pass })
 });
-
-    
-  function showError(msg) {
-    Toastify({
-      text: msg,
-      style: { background: "#dc2626", borderRadius: "10px" }
-    }).showToast();
-  }
+const data = await response.json();
+if (response.ok) {
+sessionStorage.setItem('scj_auth', JSON.stringify(data));
+window.location.href = 'sistema.html';
+} else {
+showError(data.error || "Credenciais invalidas");
+btn.disabled = false;
+btn.innerText = "ENTRAR NO SISTEMA";
+}
+} catch (err) {
+showError("Erro de conexao.");
+btn.disabled = false;
+btn.innerText = "ENTRAR NO SISTEMA";
+}
+});
+function showError(msg) {
+Toastify({
+text: msg,
+duration: 3000,
+gravity: "top",
+position: "right",
+style: { background: "#dc2626" }
+}).showToast();
+}
 </script>
-
 </body>
 </html>
